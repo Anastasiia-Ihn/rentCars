@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import Modal from 'react-modal';
+
+import { CardCarAbout } from 'components/CardCarAbout/CardCarAbout';
+
 export const CardCar = ({ item }) => {
   const {
     id,
@@ -11,6 +16,17 @@ export const CardCar = ({ item }) => {
     rentalCompany,
     address,
   } = item;
+  console.log(item);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <li>
@@ -37,7 +53,19 @@ export const CardCar = ({ item }) => {
       <p>{model}</p>
       <p>{id}</p>
       <p>{functionalities}</p>
-      <button type="button">Learn more</button>
+
+      <button type="button" onClick={openModal}>
+        Learn more
+      </button>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Need help modal"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <CardCarAbout item={item} onClose={closeModal} />
+      </Modal>
     </li>
   );
 };

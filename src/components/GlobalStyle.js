@@ -2,8 +2,17 @@ import styled, { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
+
+/* :root {
+  --font-family: "Manrope", sans-serif;
+  --second-family: "Inter", sans-serif;
+} */
+
 body {
-    color: #000000;
+  font-size: 14px;
+
+  line-height: 1.42857;
+  color: #121417;
     padding: 0 15px;
   
   margin: 0 auto;
@@ -51,6 +60,28 @@ li{
    list-style: none;
    padding: 0;
 }
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    border: var(--borderModal);
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const Button = styled.button`
@@ -62,6 +93,6 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     cursor: pointer;
-    background-color: #23784cA1;
+    background-color: #23784ca1;
   }
 `;

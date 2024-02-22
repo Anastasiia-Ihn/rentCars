@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 
 import { CardCarAbout } from 'components/CardCarAbout/CardCarAbout';
+import { Icon } from 'components/Icon';
+import { ItemForList } from './CardCar.styled';
 
 export const CardCar = ({ item }) => {
   const {
@@ -16,7 +18,6 @@ export const CardCar = ({ item }) => {
     rentalCompany,
     address,
   } = item;
-  console.log(item);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,23 +25,34 @@ export const CardCar = ({ item }) => {
     setIsModalOpen(true);
   };
 
+  // const localStorageIds =
+  //   JSON.parse(localStorage.getItem('saveCheckedFavorite')) ?? [];
+
+  // const isIdInLocalStorage = localStorageIds.includes(id);
+
+  // const labelClass = isIdInLocalStorage
+  //   ? 'heart-icon-action  svg-active'
+  //   : 'heart-icon-action ';
+
+  // const labelClass = 'heart-icon-action ';
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   return (
-    <li>
+    <ItemForList>
       <input
         id={id}
         type="checkbox"
-        name="heart-icon"
+        name="icon-heart"
+        className="heart-icon-elem"
         // ${isChecked ? 'checked' : ''}
       />
-      {/* <label for="${_id}" aria-hidden="true" class="${labelClass} ">
-        <svg class="icon-heart-svg " width="22" height="22">
-          <use href="${imgUrl}#icon-heart"></use>
-        </svg>
-      </label> */}
+
+      <label htmlFor={id} aria-hidden="true" className="heart-icon-action">
+        <Icon stroke="#121417" name="heart" width="24" height="24"></Icon>
+      </label>
 
       <img src={img} alt={model} />
       <h3>{`${make} ${model}, ${year}`}</h3>
@@ -66,6 +78,6 @@ export const CardCar = ({ item }) => {
       >
         <CardCarAbout item={item} onClose={closeModal} />
       </Modal>
-    </li>
+    </ItemForList>
   );
 };

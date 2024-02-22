@@ -10,23 +10,15 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   font-size: 14px;
-
+  width: 1440px;
   line-height: 1.42857;
   color: #121417;
-    padding: 0 15px;
+  padding: 0 15px;
   
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
 
 img {
     display: block;
@@ -82,6 +74,61 @@ li{
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
   }
+
+  
+.icon-heart-svg {
+  z-index: 25;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  pointer-events: none;
+  stroke: #f8f8f8;
+  opacity: 0.5;
+  width: 22px;
+  height: 22px;
+
+  fill: #ddddcc00;
+}
+/* .svg-active {
+  fill: #f8f8f8;
+  opacity: 1;
+} */
+
+.heart-icon-elem {
+  z-index: 23;
+  opacity: 0; /* це щоб сховати input (галочку)*/
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 22px;
+  width: 22px;
+  margin: 16px 16px 0 0;
+  cursor: pointer;
+}
+.heart-icon-elem:checked + label.heart-icon-action > .icon-heart-svg {
+  fill: #f8f8f8;
+  opacity: 1;
+}
+
+.heart-icon-action {
+  z-index: 24;
+  margin: 16px 16px 0 0;
+
+  pointer-events: none;
+  /* opacity: 0; */
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 22px;
+  width: 22px;
+  color: transparent;
+  user-select: none;
+  /* background-color: #bdaeae00; */
+  border-radius: inherit;
+  cursor: pointer;
+}
+
 `;
 
 export const Button = styled.button`

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCars } from './carsOperations.js';
+import { fetchCars, fetchCarsBySearch } from './carsOperations.js';
 
 const carsInitialState = {
   cars: [],
@@ -31,16 +31,11 @@ export const carsSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
         state.isMore = false;
+      })
+      .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.cars = payload;
       });
-    // .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.cars = payload;
-    //   if (payload.length < 12) {
-    //     state.isMore = false;
-    //     return;
-    //   }
-    //   state.isMore = true;
-    // });
   },
 });
 

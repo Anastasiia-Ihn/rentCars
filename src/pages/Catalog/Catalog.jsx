@@ -4,7 +4,7 @@ import { LoadMore } from 'components/LoadMore/LoadMore';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { fetchCars } from 'redux/cars/carsOperations';
+import { fetchCars, fetchCarsBySearch } from 'redux/cars/carsOperations';
 import { selectLoading } from 'redux/cars/carsSelectors';
 
 export default function Catalog() {
@@ -13,31 +13,29 @@ export default function Catalog() {
   const { isMore } = useSelector(state => state.cars);
 
   const [searchParams, setSearchParams] = useSearchParams({});
-  // const [makeSearchParams, setMakeSearchParams] = useSearchParams();
+  const [makeSearchParams, setMakeSearchParams] = useSearchParams();
   const isLoading = useSelector(selectLoading);
 
   useEffect(() => {
-    setSearchParams({ page: 1, make: '' });
+    setSearchParams({ page: 1 });
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     const page = searchParams.get('page');
-    console.log(page);
-    // const make = makeSearchParams.get('make');
 
-    const make = searchParams.get('make');
-    console.log(make);
-
-    // if (!make) {
-    //   return;
-    // }
     if (!page) {
       return;
     }
 
-    dispatch(fetchCars({ page, make }));
+    dispatch(fetchCars({ page }));
   }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    const make = makeSearchParams.get('make');
+    console.log(make);
+    dispatch(fetchCarsBySearch({ make }));
+  }, [dispatch, makeSearchParams]);
 
   const handleClickPage = () => {
     const currentPage = searchParams.get('page');
@@ -46,8 +44,9 @@ export default function Catalog() {
   };
 
   const onSubmit = value => {
-    console.log(...searchParams);
-    setSearchParams({ ...searchParams, make: value });
+    setSearchParams({ page: 1 });
+
+    setMakeSearchParams({ make: value });
   };
 
   return (

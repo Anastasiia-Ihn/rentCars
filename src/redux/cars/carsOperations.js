@@ -5,10 +5,9 @@ axios.defaults.baseURL = 'https://654e2195cbc325355742678f.mockapi.io';
 
 export const fetchCars = createAsyncThunk(
   'cars/fetchAll',
-  async ({ page, make }, thunkAPI) => {
+  async ({ page }, thunkAPI) => {
     try {
       const params = new URLSearchParams({
-        make,
         page,
         limit: 12,
       });
@@ -23,12 +22,10 @@ export const fetchCars = createAsyncThunk(
 
 export const fetchCarsBySearch = createAsyncThunk(
   'cars/fetchSome',
-  async ({ page, make = '' }, thunkAPI) => {
+  async ({ make }, thunkAPI) => {
     try {
       const params = new URLSearchParams({
         make,
-        page,
-        limit: 12,
       });
       const response = await axios.get(`/adverts?${params}`);
       console.log(response);

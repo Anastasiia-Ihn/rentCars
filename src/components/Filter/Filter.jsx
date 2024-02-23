@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const makes = [
   'Buick',
   'Volvo',
@@ -22,13 +24,27 @@ const makes = [
   'Land',
 ];
 
-export const Filter = () => {
+export const Filter = ({ onSubmit }) => {
+  const [make, setMake] = useState('');
+
+  const handleChange = e => {
+    setMake(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(make);
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <ul>
         <li>
-          <label htmlFor="brand">Car Brand</label>
-          <select name="brand">
+          <label htmlFor="make">Car Brand</label>
+          <select aria-label="select" name="make" onChange={handleChange}>
+            {/* <option disabled selected value={''}>
+              Select a brand
+            </option> */}
+
             {makes.map(el => (
               <option value={el} key={el}>
                 {el}

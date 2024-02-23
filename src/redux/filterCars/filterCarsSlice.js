@@ -16,4 +16,4 @@ export const filtersCarsSlice = createSlice({
 
 export const { setFilter } = filtersCarsSlice.actions;
 
-export default filtersCarsSlice.reducer;
+export const filterReducer = filtersCarsSlice.reducer;

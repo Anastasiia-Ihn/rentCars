@@ -72,7 +72,7 @@ export const CardCar = ({ item }) => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        contentLabel="Need help modal"
+        contentLabel="modal about a car"
         className="modal-content"
         overlayClassName="modal-overlay"
       >

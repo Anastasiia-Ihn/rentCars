@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
@@ -91,10 +91,10 @@ li{
 
   fill: #3470ff;
 }
-/* .svg-active {
+.svg-active {
   fill: #f8f8f8;
   opacity: 1;
-} */
+}
 
 .heart-icon-elem {
   z-index: 3;

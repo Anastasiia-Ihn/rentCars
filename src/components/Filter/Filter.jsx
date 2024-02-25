@@ -1,7 +1,7 @@
-import { Field, Formik, Form } from 'formik';
+import { Field, Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { ButtonSearch } from './Filter.styled';
+import { ButtonSearch, FormStyled } from './Filter.styled';
 
 const makes = [
   'Buick',
@@ -40,7 +40,7 @@ export const Filter = ({ onSubmit }) => {
       validationSchema={builderSchema}
       onSubmit={onSubmit}
     >
-      <Form>
+      <FormStyled>
         <label htmlFor="make">
           Car Brand
           <Field
@@ -69,7 +69,7 @@ export const Filter = ({ onSubmit }) => {
         </Field>
 
         <ButtonSearch type="submit">Search</ButtonSearch>
-      </Form>
+      </FormStyled>
     </Formik>
   );
 };

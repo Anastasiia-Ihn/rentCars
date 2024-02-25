@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 
+import imageDef from '../../images/default-placeholder.png';
+
 import { CardCarAbout } from 'components/CardCarAbout/CardCarAbout';
 import { Icon } from 'components/Icon';
 import { Button, ContainerForTitle, Img, ItemForList } from './CardCar.styled';
@@ -17,7 +19,6 @@ export const CardCar = ({ item }) => {
     model,
     type,
     img,
-    functionalities,
     rentalPrice,
     rentalCompany,
     address,
@@ -29,12 +30,7 @@ export const CardCar = ({ item }) => {
     setIsModalOpen(true);
   };
 
-  // const localStorageIds =
-  //   JSON.parse(localStorage.getItem('saveCheckedFavorite')) ?? [];
-
-  // const isIdInLocalStorage = localStorageIds.includes(id);
-
-  // const labelClass = isIdInLocalStorage
+  // const labelClass = localStorage.includes(id)
   //   ? 'heart-icon-action  svg-active'
   //   : 'heart-icon-action ';
 
@@ -60,7 +56,7 @@ export const CardCar = ({ item }) => {
         <Icon stroke="#fff" name="heart" width="24" height="24"></Icon>
       </label>
 
-      <Img src={img} alt={model} width={'274px'} height={'268px'} />
+      <Img src={img || imageDef} alt={model} width={'274px'} height={'268px'} />
       <ContainerForTitle>
         <Title>
           {`${make}`} <span>{model}</span>, {`${year}`}

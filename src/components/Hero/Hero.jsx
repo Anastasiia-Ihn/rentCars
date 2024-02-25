@@ -1,7 +1,9 @@
+import { HeroSection, MainTitle } from './Hero.styled';
+
 export const Hero = () => {
   return (
-    <section>
-      <h2>Hero</h2>
-    </section>
+    <HeroSection>
+      <MainTitle>The right vehicles at the right prices</MainTitle>
+    </HeroSection>
   );
 };

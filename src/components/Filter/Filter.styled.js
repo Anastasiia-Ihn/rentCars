@@ -1,3 +1,4 @@
+import { Form } from 'formik';
 import styled from 'styled-components';
 
 export const ButtonSearch = styled.button`
@@ -16,4 +17,8 @@ export const ButtonSearch = styled.button`
     cursor: pointer;
     background: #0b44cd;
   }
+`;
+
+export const FormStyled = styled(Form)`
+  margin-bottom: 50px;
 `;

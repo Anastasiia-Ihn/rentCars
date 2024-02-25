@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 
-import imageDef from '../../images/default-placeholder.png';
+import imageDef from 'images/default-placeholder.png';
 
 import { CardCarAbout } from 'components/CardCarAbout/CardCarAbout';
 import { Icon } from 'components/Icon';

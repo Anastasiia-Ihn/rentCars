@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from '../../images/2.jpg';
+import background from 'images/2.jpg';
 
 export const HeroSection = styled.section`
   margin-left: auto;

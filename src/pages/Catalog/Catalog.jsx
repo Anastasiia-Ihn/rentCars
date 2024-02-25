@@ -6,14 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCars, fetchCarsBySearch } from 'redux/cars/carsOperations';
 import { selectLoading } from 'redux/cars/carsSelectors';
+import { setFilter } from 'redux/filterCars/filterCarsSlice';
 
 export default function Catalog() {
   const dispatch = useDispatch();
 
   const { isMore } = useSelector(state => state.cars);
-
-  const [searchParams, setSearchParams] = useSearchParams({});
-  const [makeSearchParams, setMakeSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isLoading = useSelector(selectLoading);
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function Catalog() {
 
   useEffect(() => {
     const page = searchParams.get('page');
-
     if (!page) {
       return;
     }
@@ -31,22 +29,18 @@ export default function Catalog() {
     dispatch(fetchCars({ page }));
   }, [dispatch, searchParams]);
 
-  useEffect(() => {
-    const make = makeSearchParams.get('make');
-    console.log(make);
-    dispatch(fetchCarsBySearch({ make }));
-  }, [dispatch, makeSearchParams]);
-
   const handleClickPage = () => {
     const currentPage = searchParams.get('page');
     const nextPage = Number(currentPage) + 1;
     setSearchParams({ page: nextPage });
   };
 
-  const onSubmit = value => {
-    setSearchParams({ page: 1 });
+  const onSubmit = (values, form) => {
+    // setSearchParams({ page: 1 });
+    const { make, rentalPrice } = values;
+    setFilter({ make, rentalPrice });
 
-    setMakeSearchParams({ make: value });
+    dispatch(fetchCarsBySearch({ make, rentalPrice }));
   };
 
   return (

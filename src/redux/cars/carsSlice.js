@@ -33,8 +33,13 @@ export const carsSlice = createSlice({
         state.isMore = false;
       })
       .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.cars = payload;
+      })
+      .addCase(fetchCarsBySearch.pending, (state, { payload }) => {
+        console.log(payload);
+      })
+      .addCase(fetchCarsBySearch.rejected, (state, { payload }) => {
+        console.log('error');
       });
   },
 });

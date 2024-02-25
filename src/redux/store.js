@@ -9,26 +9,22 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import { filterReducer } from './filterCars/filterCarsSlice.js';
 import { carsReducer } from './cars/carsSlice.js';
 
 const persistConfig = {
-  key: 'user',
+  key: 'filters',
   storage,
-  blacklist: ['cars'],
+  // blacklist: ['cars'],
 };
 
-const rootReducer = combineReducers({
-  cars: carsReducer,
-  filtersCars: filterReducer,
-});
-
-const persistedRootReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedRootReducer,
+  reducer: {
+    cars: carsReducer,
+    filtersCars: persistReducer(persistConfig, filterReducer),
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

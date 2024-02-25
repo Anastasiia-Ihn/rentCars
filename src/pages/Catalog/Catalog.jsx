@@ -5,14 +5,20 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCars, fetchCarsBySearch } from 'redux/cars/carsOperations';
-import { selectLoading } from 'redux/cars/carsSelectors';
+import {
+  selectIsMore,
+  selectIsRefreshing,
+  selectLoading,
+} from 'redux/cars/carsSelectors';
 import { setFilter } from 'redux/filterCars/filterCarsSlice';
 
 export default function Catalog() {
   const dispatch = useDispatch();
 
-  const { isMore } = useSelector(state => state.cars);
+  const isMore = useSelector(selectIsMore);
+
   const [searchParams, setSearchParams] = useSearchParams();
+  // const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectLoading);
 
   useEffect(() => {
@@ -38,7 +44,7 @@ export default function Catalog() {
   const onSubmit = (values, form) => {
     // setSearchParams({ page: 1 });
     const { make, rentalPrice } = values;
-    setFilter({ make, rentalPrice });
+    dispatch(setFilter({ make, rentalPrice }));
 
     dispatch(fetchCarsBySearch({ make, rentalPrice }));
   };

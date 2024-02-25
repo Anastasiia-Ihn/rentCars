@@ -3,6 +3,7 @@ import { fetchCars, fetchCarsBySearch } from './carsOperations.js';
 
 const carsInitialState = {
   cars: [],
+  isRefreshing: false,
   isLoading: false,
   error: null,
   isMore: true,
@@ -34,12 +35,15 @@ export const carsSlice = createSlice({
       })
       .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
         state.cars = payload;
+        state.isRefreshing = false;
       })
       .addCase(fetchCarsBySearch.pending, (state, { payload }) => {
+        state.isRefreshing = true;
         console.log(payload);
       })
       .addCase(fetchCarsBySearch.rejected, (state, { payload }) => {
         console.log('error');
+        state.isRefreshing = false;
       });
   },
 });

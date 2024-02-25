@@ -32,10 +32,10 @@ const builderSchema = Yup.object().shape({
 });
 
 export const Filter = ({ onSubmit }) => {
-  const initial = useSelector(state => state.filtersCars.filtersCars);
+  const initialValues = useSelector(state => state.filtersCars.filtersCars);
   return (
     <Formik
-      initialValues={initial}
+      initialValues={initialValues}
       validationSchema={builderSchema}
       onSubmit={onSubmit}
     >
@@ -65,10 +65,6 @@ export const Filter = ({ onSubmit }) => {
           <option value="40">40</option>
           <option value="50">50</option>
         </Field>
-
-        <label>Car mileage / km</label>
-        <input type="text" />
-        <input type="text" />
 
         <button type="submit">Search</button>
       </Form>

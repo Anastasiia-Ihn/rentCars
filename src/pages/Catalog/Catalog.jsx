@@ -2,12 +2,12 @@ import { Filter } from 'components/Filter/Filter';
 import { ListCars } from 'components/ListCars/ListCars';
 import { LoadMore } from 'components/LoadMore/LoadMore';
 import { useEffect } from 'react';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCars, fetchCarsBySearch } from 'redux/cars/carsOperations';
 import {
-  selectIsError,
+  // selectIsError,
   selectIsMore,
   selectLoading,
 } from 'redux/cars/carsSelectors';
@@ -18,7 +18,7 @@ export default function Catalog() {
   const dispatch = useDispatch();
 
   const isMore = useSelector(selectIsMore);
-  const isError = useSelector(selectIsError);
+  // const isError = useSelector(selectIsError);
   const [searchParams, setSearchParams] = useSearchParams();
   const isLoading = useSelector(selectLoading);
 

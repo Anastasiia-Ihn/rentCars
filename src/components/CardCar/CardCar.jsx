@@ -3,7 +3,11 @@ import Modal from 'react-modal';
 
 import { CardCarAbout } from 'components/CardCarAbout/CardCarAbout';
 import { Icon } from 'components/Icon';
-import { ItemForList } from './CardCar.styled';
+import { Button, ContainerForTitle, Img, ItemForList } from './CardCar.styled';
+import {
+  ListAboutCar,
+  Title,
+} from 'components/CardCarAbout/CardCarAbout.styled';
 
 export const CardCar = ({ item }) => {
   const {
@@ -40,6 +44,8 @@ export const CardCar = ({ item }) => {
     setIsModalOpen(false);
   };
 
+  const addressArr = address.split(' ');
+
   return (
     <ItemForList>
       <input
@@ -51,24 +57,46 @@ export const CardCar = ({ item }) => {
       />
 
       <label htmlFor={id} aria-hidden="true" className="heart-icon-action">
-        <Icon stroke="#121417" name="heart" width="24" height="24"></Icon>
+        <Icon stroke="#fff" name="heart" width="24" height="24"></Icon>
       </label>
 
-      <img src={img} alt={model} />
-      <h3>{`${make} ${model}, ${year}`}</h3>
-      <p>{`${rentalPrice}`}</p>
-      <p>{address}</p>
-      <p>{address}</p>
+      <Img src={img} alt={model} width={'274px'} height={'268px'} />
+      <ContainerForTitle>
+        <Title>
+          {`${make}`} <span>{model}</span>, {`${year}`}
+        </Title>
+        <p>{`${rentalPrice}`}</p>
+      </ContainerForTitle>
+      <ListAboutCar>
+        <li>
+          <p>{addressArr[addressArr.length - 2].slice(0, -1)}</p>
+        </li>
+        <li>
+          <p>{addressArr[addressArr.length - 1]}</p>
+        </li>
+        <li>
+          <p>{rentalCompany}</p>
+        </li>
+      </ListAboutCar>
 
-      <p>{rentalCompany}</p>
-      <p>{type}</p>
-      <p>{model}</p>
-      <p>{id}</p>
-      <p>{functionalities}</p>
+      <ListAboutCar>
+        <li>
+          <p>{type}</p>
+        </li>
+        <li>
+          <p>{model}</p>
+        </li>
+        <li>
+          <p>{id}</p>
+        </li>
+        {/* <li>
+          <p>{functionalities[0]}</p>
+        </li> */}
+      </ListAboutCar>
 
-      <button type="button" onClick={openModal}>
+      <Button type="button" onClick={openModal}>
         Learn more
-      </button>
+      </Button>
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}

@@ -6,4 +6,5 @@ export const ListAllCars = styled.ul`
   justify-content: space-between;
   column-gap: 29px;
   row-gap: 50px;
+  margin-bottom: 100px;
 `;

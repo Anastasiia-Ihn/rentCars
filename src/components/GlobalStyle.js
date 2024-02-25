@@ -3,17 +3,17 @@ import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
 
-/* :root {
+:root {
   --font-family: "Manrope", sans-serif;
-  --second-family: "Inter", sans-serif;
-} */
+}
 
 body {
+  font-family:var(--font-family);
   font-size: 14px;
   width: 1440px;
   line-height: 1.42857;
   color: #121417;
-  padding: 0 15px;
+  padding: 0 128px;
   
   margin: 0 auto;
 }
@@ -77,18 +77,19 @@ li{
 
   
 .icon-heart-svg {
-  z-index: 25;
+  z-index: 5;
   position: absolute;
   top: 0;
   right: 0;
 
   pointer-events: none;
-  stroke: #f8f8f8;
+  stroke:#fff;
+  stroke-opacity:0.8;
   opacity: 0.5;
   width: 22px;
   height: 22px;
 
-  fill: #ddddcc00;
+  fill: #3470ff;
 }
 /* .svg-active {
   fill: #f8f8f8;
@@ -96,8 +97,8 @@ li{
 } */
 
 .heart-icon-elem {
-  z-index: 23;
-  opacity: 0; /* це щоб сховати input (галочку)*/
+  z-index: 3;
+  opacity: 0; 
   position: absolute;
   right: 0;
   top: 0;
@@ -112,11 +113,10 @@ li{
 }
 
 .heart-icon-action {
-  z-index: 24;
+  z-index: 4;
   margin: 16px 16px 0 0;
 
   pointer-events: none;
-  /* opacity: 0; */
   position: absolute;
   right: 0;
   top: 0;
@@ -124,22 +124,8 @@ li{
   width: 22px;
   color: transparent;
   user-select: none;
-  /* background-color: #bdaeae00; */
   border-radius: inherit;
   cursor: pointer;
 }
 
-`;
-
-export const Button = styled.button`
-  border-radius: 8px;
-  border-color: #ffffff;
-  font-weight: 600;
-  padding: 5px;
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    background-color: #23784ca1;
-  }
 `;

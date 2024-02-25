@@ -5,7 +5,7 @@ const carsInitialState = {
   cars: [],
   isRefreshing: false,
   isLoading: false,
-  error: null,
+  isError: null,
   isMore: true,
 };
 
@@ -18,9 +18,12 @@ export const carsSlice = createSlice({
       .addCase(fetchCars.pending, state => {
         state.isLoading = true;
         state.isMore = false;
+        state.isError = false;
       })
       .addCase(fetchCars.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+        state.isError = false;
+
         state.cars = [...state.cars, ...payload];
         if (payload.length < 12) {
           state.isMore = false;
@@ -30,20 +33,23 @@ export const carsSlice = createSlice({
       })
       .addCase(fetchCars.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.isError = payload;
         state.isMore = false;
-      })
-      .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
-        state.cars = payload;
-        state.isRefreshing = false;
       })
       .addCase(fetchCarsBySearch.pending, (state, { payload }) => {
         state.isRefreshing = true;
-        console.log(payload);
+        state.isError = false;
+      })
+      .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
+        state.isError = false;
+        state.cars = payload;
+        state.isRefreshing = false;
       })
       .addCase(fetchCarsBySearch.rejected, (state, { payload }) => {
         console.log('error');
         state.isRefreshing = false;
+        state.isError = true;
+        state.cars = [];
       });
   },
 });

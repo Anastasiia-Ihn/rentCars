@@ -12,3 +12,7 @@ export const H1Styled = styled.h1`
 export const H2Styled = styled.h2`
   margin-bottom: 20px;
 `;
+export const Section = styled.section`
+  margin: 0 auto;
+  padding: 0 auto;
+`;

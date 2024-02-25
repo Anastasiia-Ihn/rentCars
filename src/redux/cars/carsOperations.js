@@ -9,7 +9,6 @@ export const fetchCars = createAsyncThunk(
     try {
       const params = new URLSearchParams({
         page,
-
         limit: 12,
       });
       const response = await axios.get(`/adverts?${params}`);
@@ -22,13 +21,16 @@ export const fetchCars = createAsyncThunk(
 
 export const fetchCarsBySearch = createAsyncThunk(
   'cars/fetchSome',
-  async ({ make = '', rentalPrice = '' }, thunkAPI) => {
+  async ({ page = 1, make = '', rentalPrice = '' }, thunkAPI) => {
     console.log(make, rentalPrice);
     try {
       const params = new URLSearchParams({
+        page,
+        limit: 12,
         make,
         rentalPrice,
       });
+
       const response = await axios.get(`/adverts?${params}`);
       return response.data;
     } catch (e) {

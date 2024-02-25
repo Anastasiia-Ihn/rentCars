@@ -1,6 +1,7 @@
 import { Field, Formik, Form } from 'formik';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import { ButtonSearch } from './Filter.styled';
 
 const makes = [
   'Buick',
@@ -40,21 +41,22 @@ export const Filter = ({ onSubmit }) => {
       onSubmit={onSubmit}
     >
       <Form>
-        <label htmlFor="make">Car Brand</label>
-        <Field
-          component="select"
-          aria-label="select"
-          name="make"
-          placeholder="Enter the text"
-        >
-          <option value="">All</option>
-          {makes.map(el => (
-            <option value={el} key={el}>
-              {el}
-            </option>
-          ))}
-        </Field>
-
+        <label htmlFor="make">
+          Car Brand
+          <Field
+            component="select"
+            aria-label="select"
+            name="make"
+            placeholder="Enter the text"
+          >
+            <option value="">All</option>
+            {makes.map(el => (
+              <option value={el} key={el}>
+                {el}
+              </option>
+            ))}
+          </Field>
+        </label>
         <label htmlFor="rentalPrice">Price/ 1 hour</label>
 
         <Field name="rentalPrice" id="" component="select" aria-label="select">
@@ -66,7 +68,7 @@ export const Filter = ({ onSubmit }) => {
           <option value="50">50</option>
         </Field>
 
-        <button type="submit">Search</button>
+        <ButtonSearch type="submit">Search</ButtonSearch>
       </Form>
     </Formik>
   );

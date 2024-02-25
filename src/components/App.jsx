@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import { Layout } from './Layout/Layout';
 import { GlobalStyle } from './GlobalStyle';
+import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Catalog = lazy(() => import('pages/Catalog/Catalog'));
@@ -23,6 +24,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
+      <Toaster />
     </>
   );
 };

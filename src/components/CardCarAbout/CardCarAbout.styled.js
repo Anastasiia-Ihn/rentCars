@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
+  position: relative;
   width: 541px;
   height: 752px;
   padding: 40px;
@@ -8,6 +9,8 @@ export const ModalWrapper = styled.div`
   border-radius: 24px;
   background-color: #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+  z-index: 20;
 `;
 
 export const ButtonClose = styled.button`
@@ -47,7 +50,7 @@ export const ListAboutCar = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 4px;
 
   font-weight: 400;
   font-size: 12px;

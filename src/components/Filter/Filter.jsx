@@ -1,7 +1,7 @@
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { ButtonSearch, FormStyled } from './Filter.styled';
+import { ButtonSearch, FieldStyled, FormStyled, Label } from './Filter.styled';
 
 const makes = [
   'Buick',
@@ -41,32 +41,36 @@ export const Filter = ({ onSubmit }) => {
       onSubmit={onSubmit}
     >
       <FormStyled>
-        <label htmlFor="make">
-          Car Brand
-          <Field
-            component="select"
-            aria-label="select"
-            name="make"
-            placeholder="Enter the text"
-          >
-            <option value="">All</option>
-            {makes.map(el => (
-              <option value={el} key={el}>
-                {el}
-              </option>
-            ))}
-          </Field>
-        </label>
-        <label htmlFor="rentalPrice">Price/ 1 hour</label>
+        <Label htmlFor="make">Car Brand </Label>
+        <FieldStyled
+          component="select"
+          aria-label="select"
+          name="make"
+          placeholder="Enter the text"
+        >
+          <option value="">All</option>
+          {makes.map(el => (
+            <option value={el} key={el}>
+              {el}
+            </option>
+          ))}
+        </FieldStyled>
 
-        <Field name="rentalPrice" id="" component="select" aria-label="select">
+        <Label htmlFor="rentalPrice">Price/ 1 hour</Label>
+
+        <FieldStyled
+          name="rentalPrice"
+          id=""
+          component="select"
+          aria-label="select"
+        >
           <option value=""></option>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="30">30</option>
           <option value="40">40</option>
           <option value="50">50</option>
-        </Field>
+        </FieldStyled>
 
         <ButtonSearch type="submit">Search</ButtonSearch>
       </FormStyled>

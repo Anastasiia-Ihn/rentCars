@@ -1,4 +1,4 @@
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const ButtonSearch = styled.button`
@@ -20,5 +20,21 @@ export const ButtonSearch = styled.button`
 `;
 
 export const FormStyled = styled(Form)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 50px;
+`;
+
+export const Label = styled.label`
+  margin-right: 10px;
+`;
+
+export const FieldStyled = styled(Field)`
+  margin-right: 20px;
+
+  padding: 14px 18px;
+  border-radius: 14px;
+  width: 224px;
+  height: 48px;
 `;

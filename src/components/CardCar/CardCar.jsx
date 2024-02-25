@@ -10,6 +10,8 @@ import {
   ListAboutCar,
   Title,
 } from 'components/CardCarAbout/CardCarAbout.styled';
+import { getFavorites } from 'redux/favorites/favoritesSlise';
+import { useDispatch } from 'react-redux';
 
 export const CardCar = ({ item }) => {
   const {
@@ -23,6 +25,8 @@ export const CardCar = ({ item }) => {
     rentalCompany,
     address,
   } = item;
+
+  const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,6 +44,10 @@ export const CardCar = ({ item }) => {
     setIsModalOpen(false);
   };
 
+  const handleClick = () => {
+    dispatch(getFavorites(item));
+  };
+
   const addressArr = address.split(' ');
 
   return (
@@ -49,6 +57,7 @@ export const CardCar = ({ item }) => {
         type="checkbox"
         name="icon-heart"
         className="heart-icon-elem"
+        onChange={handleClick}
         // ${isChecked ? 'checked' : ''}
       />
 

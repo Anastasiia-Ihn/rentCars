@@ -13,17 +13,23 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { filterReducer } from './filterCars/filterCarsSlice.js';
 import { carsReducer } from './cars/carsSlice.js';
+import { favoritesReducer } from './favorites/favoritesSlise.js';
 
-const persistConfig = {
+const persistConfigFilters = {
   key: 'filters',
   storage,
-  // blacklist: ['cars'],
+};
+
+const persistConfigFavorites = {
+  key: 'favorites',
+  storage,
 };
 
 export const store = configureStore({
   reducer: {
     cars: carsReducer,
-    filtersCars: persistReducer(persistConfig, filterReducer),
+    filtersCars: persistReducer(persistConfigFilters, filterReducer),
+    favoritesCars: persistReducer(persistConfigFavorites, favoritesReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

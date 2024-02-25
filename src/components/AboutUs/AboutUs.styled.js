@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const AboutUsList = styled.ul`
   display: flex;
   gap: 15px;
+  margin-bottom: 150px;
 `;
 
 export const ItemListAboutUs = styled.li`

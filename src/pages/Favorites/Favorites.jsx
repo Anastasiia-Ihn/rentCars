@@ -6,7 +6,11 @@ export default function Favorites() {
 
   return (
     <section>
-      {listCars.length && <FavoriteList favoritesCars={listCars} />}
+      {listCars.length ? (
+        <FavoriteList favoritesCars={listCars} />
+      ) : (
+        <h4>You didn't choose any car.</h4>
+      )}
     </section>
   );
 }

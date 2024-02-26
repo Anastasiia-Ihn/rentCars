@@ -1,23 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialStateFavorites = {
   favorites: [],
 };
-
 export const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState: initialState,
+  initialState: initialStateFavorites,
   reducers: {
     getFavorites: (state, { payload }) => {
-      console.log(payload.id);
-      //   const arr = state.favorites;
-      //   console.log(arr);
-      //   if (arr.find(item => item.id === payload.id)) {
-      //     return;
-      //   }
+      const index = state.favorites.findIndex(item => item.id === payload.id);
+      console.log(index);
 
-      //   state.favorites.push(payload);
-      state.favorites = [...state.favorites, ...payload];
+      if (index === -1) {
+        state.favorites = [...state.favorites, payload];
+        return;
+      }
+      state.favorites.splice(index, 1);
     },
   },
 });

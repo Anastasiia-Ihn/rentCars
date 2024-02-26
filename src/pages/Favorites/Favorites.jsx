@@ -6,9 +6,7 @@ export default function Favorites() {
 
   return (
     <section>
-      <h1>Favorites</h1>
       {listCars.length && <FavoriteList favoritesCars={listCars} />}
     </section>
   );
 }
-// state.favoritesCars.favorites;

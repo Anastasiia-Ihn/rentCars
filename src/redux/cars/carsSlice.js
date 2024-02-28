@@ -44,6 +44,7 @@ export const carsSlice = createSlice({
         state.isError = false;
         state.cars = payload;
         state.isRefreshing = false;
+        state.isMore = false;
       })
       .addCase(fetchCarsBySearch.rejected, (state, { payload }) => {
         console.log('error');

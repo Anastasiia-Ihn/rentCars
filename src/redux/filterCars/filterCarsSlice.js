@@ -12,7 +12,6 @@ export const filtersCarsSlice = createSlice({
   initialState: filtersCarsInitialState,
   reducers: {
     setFilter: (state, { payload }) => {
-      console.log(payload);
       state.filtersCars = payload;
     },
   },

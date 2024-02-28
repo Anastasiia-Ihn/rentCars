@@ -101,7 +101,7 @@ export const CardCarAbout = ({ item, onClose }) => {
 
         <ItemConditions>
           <p>
-            {`Mileage: `} <span>{mileage}</span>
+            {`Mileage: `} <span>{mileage.toLocaleString('en')}</span>
           </p>
         </ItemConditions>
         <ItemConditions>

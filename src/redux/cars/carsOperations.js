@@ -21,17 +21,20 @@ export const fetchCars = createAsyncThunk(
 
 export const fetchCarsBySearch = createAsyncThunk(
   'cars/fetchSome',
-  async ({ page = 1, make = '', rentalPrice = '' }, thunkAPI) => {
-    console.log(make, rentalPrice);
+  async (_, thunkAPI) => {
     try {
-      const params = new URLSearchParams({
-        page,
-        limit: 12,
-        make,
-        rentalPrice,
-      });
-
-      const response = await axios.get(`/adverts?${params}`);
+      // const params = new URLSearchParams({
+      //   make,
+      // });
+      // if (make === '') {
+      //   const params = new URLSearchParams({
+      //     page: 1,
+      //     limit: 12,
+      //   });
+      //   const response = await axios.get(`/adverts?${params}`);
+      //   return response.data;
+      // }
+      const response = await axios.get(`/adverts?`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -2,14 +2,14 @@ import { Filter } from 'components/Filter/Filter';
 import { ListCars } from 'components/ListCars/ListCars';
 import { LoadMore } from 'components/LoadMore/LoadMore';
 import { useEffect } from 'react';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCars, fetchCarsBySearch } from 'redux/cars/carsOperations';
 import {
-  // selectIsError,
   selectIsMore,
   selectLoading,
+  selectVisibleCars,
 } from 'redux/cars/carsSelectors';
 import { setFilter } from 'redux/filterCars/filterCarsSlice';
 import { Section } from './Catalog.styled';
@@ -18,7 +18,7 @@ export default function Catalog() {
   const dispatch = useDispatch();
 
   const isMore = useSelector(selectIsMore);
-  // const isError = useSelector(selectIsError);
+  const visibleCars = useSelector(selectVisibleCars);
   const [searchParams, setSearchParams] = useSearchParams();
   const isLoading = useSelector(selectLoading);
 
@@ -46,17 +46,18 @@ export default function Catalog() {
     const { make, rentalPrice } = values;
     setSearchParams({ make, rentalPrice });
     dispatch(setFilter({ make, rentalPrice }));
-    dispatch(fetchCarsBySearch({ make, rentalPrice }));
-    // if (isError) {
-    //   toast.error('Not found cars');
-    // }
+    dispatch(fetchCarsBySearch());
+    if (!visibleCars.length) {
+      toast.error('Not found cars');
+    }
   };
-
   return (
     <Section>
       <Filter onSubmit={onSubmit} />
       {isLoading ? <div>Loading...</div> : <ListCars />}
-      {isMore && <LoadMore onClick={handleClickPage} />}
+      {(isMore || visibleCars.length > 12) && (
+        <LoadMore onClick={handleClickPage} />
+      )}
     </Section>
   );
 }

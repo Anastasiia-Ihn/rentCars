@@ -11,7 +11,8 @@ import {
   Title,
 } from 'components/CardCarAbout/CardCarAbout.styled';
 import { getFavorites } from 'redux/favorites/favoritesSlise';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavCars } from 'redux/cars/carsSelectors';
 
 export const CardCar = ({ item }) => {
   const {
@@ -26,10 +27,16 @@ export const CardCar = ({ item }) => {
     address,
   } = item;
 
-  // const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const allFavoriteCars = useSelector(selectFavCars);
+
+  const indexCars = allFavoriteCars.findIndex(item => item.id === id);
+
+  const [, city, country] = address.split(' ');
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -40,10 +47,9 @@ export const CardCar = ({ item }) => {
   };
 
   const handleClick = () => {
+    setIsFavorite(!isFavorite);
     dispatch(getFavorites(item));
   };
-
-  const addressArr = address.split(' ');
 
   return (
     <ItemForList>
@@ -51,11 +57,15 @@ export const CardCar = ({ item }) => {
         id={id}
         type="button"
         name="icon-heart"
-        className="heart-icon-elem"
+        className="heart-icon-elem "
         onClick={handleClick}
       >
         <Icon
-          className="heart-icon-action "
+          className={
+            indexCars !== -1
+              ? 'heart-icon-action svg-active'
+              : 'heart-icon-action'
+          }
           stroke="#fff"
           name="heart"
           width="24"
@@ -72,10 +82,10 @@ export const CardCar = ({ item }) => {
       </ContainerForTitle>
       <ListAboutCar>
         <li>
-          <p>{addressArr[addressArr.length - 2].slice(0, -1)}</p>
+          <p>{city.slice(0, -1)}</p>
         </li>
         <li>
-          <p>{addressArr[addressArr.length - 1]}</p>
+          <p>{country}</p>
         </li>
         <li>
           <p>{rentalCompany}</p>

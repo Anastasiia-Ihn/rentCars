@@ -8,6 +8,7 @@ import {
   Label,
   Option,
 } from './Filter.styled';
+import { arrNumbers } from 'helpers/arrNumbers';
 
 const makes = [
   'Buick',
@@ -40,6 +41,7 @@ const builderSchema = Yup.object().shape({
 
 export const Filter = ({ onSubmit }) => {
   const initialValues = useSelector(state => state.filtersCars.filtersCars);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -71,9 +73,9 @@ export const Filter = ({ onSubmit }) => {
           aria-label="select"
         >
           <Option value="">All</Option>
-          {Array.from({ length: 20 }, (_, index) => (index + 1) * 10).map(i => (
-            <Option key={i} value={i}>
-              {i}
+          {arrNumbers(19).map(el => (
+            <Option key={el} value={el}>
+              {el}
             </Option>
           ))}
         </FieldStyled>

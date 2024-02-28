@@ -25,18 +25,10 @@ export const selectVisibleCars = createSelector(
     }
 
     if (filters.make !== '' && filters.rentalPrice !== '') {
-      let carsByMake = [];
-      cars.filter(car => {
-        const isMake = car.make
-          .toLowerCase()
-          .includes(filters.make.toLowerCase());
+      let carsByMake = cars.filter(car =>
+        car.make.toLowerCase().includes(filters.make.toLowerCase())
+      );
 
-        if (!isMake) {
-          return;
-        }
-
-        return carsByMake.push(car);
-      });
       return carsByMake.filter(
         car => Number(car.rentalPrice.slice(1)) <= Number(filters.rentalPrice)
       );

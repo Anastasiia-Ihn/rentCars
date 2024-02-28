@@ -9,7 +9,6 @@ export const favoritesSlice = createSlice({
   reducers: {
     getFavorites: (state, { payload }) => {
       const index = state.favorites.findIndex(item => item.id === payload.id);
-      console.log(index);
 
       if (index === -1) {
         state.favorites = [...state.favorites, payload];

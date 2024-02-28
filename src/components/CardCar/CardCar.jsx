@@ -26,6 +26,7 @@ export const CardCar = ({ item }) => {
     address,
   } = item;
 
+  // const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,12 +34,6 @@ export const CardCar = ({ item }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-
-  // const labelClass = localStorage.includes(id)
-  //   ? 'heart-icon-action  svg-active'
-  //   : 'heart-icon-action ';
-
-  // const labelClass = 'heart-icon-action ';
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -52,18 +47,21 @@ export const CardCar = ({ item }) => {
 
   return (
     <ItemForList>
-      <input
+      <button
         id={id}
-        type="checkbox"
+        type="button"
         name="icon-heart"
         className="heart-icon-elem"
-        onChange={handleClick}
-        // ${isChecked ? 'checked' : ''}
-      />
-
-      <label htmlFor={id} aria-hidden="true" className="heart-icon-action">
-        <Icon stroke="#fff" name="heart" width="24" height="24"></Icon>
-      </label>
+        onClick={handleClick}
+      >
+        <Icon
+          className="heart-icon-action "
+          stroke="#fff"
+          name="heart"
+          width="24"
+          height="24"
+        ></Icon>
+      </button>
 
       <Img src={img || imageDef} alt={model} width={'274px'} height={'268px'} />
       <ContainerForTitle>
@@ -94,9 +92,6 @@ export const CardCar = ({ item }) => {
         <li>
           <p>{id}</p>
         </li>
-        {/* <li>
-          <p>{functionalities[0]}</p>
-        </li> */}
       </ListAboutCar>
 
       <Button type="button" onClick={openModal}>

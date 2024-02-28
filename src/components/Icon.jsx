@@ -1,6 +1,7 @@
 import Icons from '../sprite.svg';
 
 export const Icon = ({
+  className = '',
   fill = 'none',
   stroke = 'inherit',
   name,
@@ -8,7 +9,13 @@ export const Icon = ({
   height = '18px',
 }) => {
   return (
-    <svg fill={fill} stroke={stroke} width={width} height={height}>
+    <svg
+      className={className}
+      fill={fill}
+      stroke={stroke}
+      width={width}
+      height={height}
+    >
       <use href={`${Icons}#icon-${name}`}></use>
     </svg>
   );

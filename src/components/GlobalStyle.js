@@ -75,57 +75,31 @@ li{
     background: rgba(0, 0, 0, 0.5);
   }
 
-  
-.icon-heart-svg {
-  z-index: 5;
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  pointer-events: none;
-  stroke:#fff;
-  stroke-opacity:0.8;
-  opacity: 0.5;
-  width: 22px;
-  height: 22px;
-
-  fill: #3470ff;
-}
 .svg-active {
-  fill: #f8f8f8;
-  opacity: 1;
+  fill: #3477ff;
+  stroke: #2477ff;
 }
 
 .heart-icon-elem {
-  z-index: 3;
-  opacity: 0; 
   position: absolute;
   right: 0;
   top: 0;
+
   height: 22px;
   width: 22px;
   margin: 16px 16px 0 0;
+
   cursor: pointer;
-}
-.heart-icon-elem:checked + label.heart-icon-action > .icon-heart-svg {
-  fill: #f8f8f8;
-  opacity: 1;
+  background-color: inherit;
+  border: none;
 }
 
 .heart-icon-action {
-  z-index: 4;
-  margin: 16px 16px 0 0;
-
+  
   pointer-events: none;
   position: absolute;
   right: 0;
   top: 0;
-  height: 22px;
-  width: 22px;
-  color: transparent;
-  user-select: none;
-  border-radius: inherit;
-  cursor: pointer;
-}
+  }
 
 `;

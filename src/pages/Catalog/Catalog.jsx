@@ -27,15 +27,13 @@ export default function Catalog() {
     const paramsObject = getSearchParamsObject(searchParams);
 
     const { page, ...rest } = paramsObject;
-
-    // if (!page) {
-    //   console.log(page);
-    //   // setSearchParams({ page: 1 });
-    //   setSearchParams(searchParams => ({ ...searchParams, page: 1 }));
-    //   return;
-    // }
-
     const filtersLength = Object.keys(rest).length;
+
+    if (!page && !filtersLength) {
+      console.log(page);
+      setSearchParams({ page: 1 });
+      return;
+    }
 
     if (filtersLength) {
       dispatch(fetchCarsBySearch(rest));
@@ -43,7 +41,7 @@ export default function Catalog() {
     }
 
     dispatch(fetchCars(paramsObject));
-  }, [dispatch, searchParams]);
+  }, [dispatch, searchParams, setSearchParams]);
 
   const handleClickPage = () => {
     const currentPage = searchParams.get('page');
@@ -57,7 +55,6 @@ export default function Catalog() {
 
   const handleReset = reset => {
     reset();
-    console.log(reset());
     setSearchParams({});
   };
   return (
@@ -72,9 +69,7 @@ export default function Catalog() {
       ) : (
         <ListCars visibleCars={visibleCars} />
       )}
-      {(isMore || visibleCars.length > 12) && (
-        <LoadMore onClick={handleClickPage} />
-      )}
+      {isMore && <LoadMore onClick={handleClickPage} />}
     </Section>
   );
 }

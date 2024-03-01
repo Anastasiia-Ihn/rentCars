@@ -3,7 +3,7 @@ import { fetchCars, fetchCarsBySearch } from './carsOperations.js';
 
 const carsInitialState = {
   cars: [],
-  isRefreshing: false,
+  page: null,
   isLoading: false,
   isError: null,
   isMore: true,
@@ -13,17 +13,9 @@ export const carsSlice = createSlice({
   name: 'cars',
   initialState: carsInitialState,
 
-  // reducers: {
-  //   setPage: (state, { payload }) => {
-  //     state.page = payload;
-  //     console.log(state.page);
-  //   },
-  // },
-
   extraReducers: builder => {
     builder
       .addCase(fetchCars.pending, state => {
-        state.isRefreshing = true;
         state.isLoading = true;
         state.isMore = false;
         state.isError = false;
@@ -31,34 +23,34 @@ export const carsSlice = createSlice({
       .addCase(fetchCars.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isError = false;
-        state.isRefreshing = false;
+        state.page = payload.page;
 
-        state.cars = [...state.cars, ...payload];
-        if (payload.length < 12) {
+        if (payload.arrCars.length < 12) {
           state.isMore = false;
           return;
         }
         state.isMore = true;
+        if (Number(state.page) === 1) {
+          state.cars = [...payload.arrCars];
+          return;
+        }
+        state.cars = [...state.cars, ...payload.arrCars];
       })
       .addCase(fetchCars.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = payload;
         state.isMore = false;
-        state.isRefreshing = false;
       })
       .addCase(fetchCarsBySearch.pending, (state, { payload }) => {
-        state.isRefreshing = true;
         state.isError = false;
       })
       .addCase(fetchCarsBySearch.fulfilled, (state, { payload }) => {
         state.isError = false;
         state.cars = payload;
-        state.isRefreshing = false;
         state.isMore = false;
       })
       .addCase(fetchCarsBySearch.rejected, (state, { payload }) => {
         console.log('error');
-        state.isRefreshing = false;
         state.isError = true;
         state.cars = [];
       });
@@ -66,5 +58,3 @@ export const carsSlice = createSlice({
 });
 
 export const carsReducer = carsSlice.reducer;
-
-// export const { setPage } = carsSlice.actions;

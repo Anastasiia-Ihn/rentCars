@@ -2,38 +2,47 @@ import { Filter } from 'components/Filter/Filter';
 import { ListCars } from 'components/ListCars/ListCars';
 import { LoadMore } from 'components/LoadMore/LoadMore';
 import { useEffect } from 'react';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCars, fetchCarsBySearch } from 'redux/cars/carsOperations';
 import {
+  selectCars,
   selectIsMore,
   selectLoading,
-  selectVisibleCars,
 } from 'redux/cars/carsSelectors';
-import { setFilter } from 'redux/filterCars/filterCarsSlice';
 import { Section } from './Catalog.styled';
+import { getSearchParamsObject } from 'helpers/getSearchParamsObject';
 
 export default function Catalog() {
   const dispatch = useDispatch();
 
   const isMore = useSelector(selectIsMore);
-  const visibleCars = useSelector(selectVisibleCars);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const visibleCars = useSelector(selectCars);
   const isLoading = useSelector(selectLoading);
 
-  useEffect(() => {
-    setSearchParams({ page: 1 });
-    // eslint-disable-next-line
-  }, []);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const page = searchParams.get('page');
-    if (!page) {
+    const paramsObject = getSearchParamsObject(searchParams);
+
+    const { page, ...rest } = paramsObject;
+
+    // if (!page) {
+    //   console.log(page);
+    //   // setSearchParams({ page: 1 });
+    //   setSearchParams(searchParams => ({ ...searchParams, page: 1 }));
+    //   return;
+    // }
+
+    const filtersLength = Object.keys(rest).length;
+
+    if (filtersLength) {
+      dispatch(fetchCarsBySearch(rest));
       return;
     }
 
-    dispatch(fetchCars({ page }));
+    dispatch(fetchCars(paramsObject));
   }, [dispatch, searchParams]);
 
   const handleClickPage = () => {
@@ -42,19 +51,27 @@ export default function Catalog() {
     setSearchParams({ page: nextPage });
   };
 
-  const onSubmit = (values, form) => {
-    const { make, rentalPrice } = values;
-    setSearchParams({ make, rentalPrice });
-    dispatch(setFilter({ make, rentalPrice }));
-    dispatch(fetchCarsBySearch());
-    if (!visibleCars.length) {
-      toast.error('Not found cars');
-    }
+  const onSubmit = values => {
+    setSearchParams(values);
+  };
+
+  const handleReset = reset => {
+    reset();
+    console.log(reset());
+    setSearchParams({});
   };
   return (
     <Section>
-      <Filter onSubmit={onSubmit} />
-      {isLoading ? <div>Loading...</div> : <ListCars />}
+      <Filter
+        onSubmit={onSubmit}
+        handleReset={handleReset}
+        searchParams={searchParams}
+      />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ListCars visibleCars={visibleCars} />
+      )}
       {(isMore || visibleCars.length > 12) && (
         <LoadMore onClick={handleClickPage} />
       )}

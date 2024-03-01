@@ -13,9 +13,17 @@ export const carsSlice = createSlice({
   name: 'cars',
   initialState: carsInitialState,
 
+  // reducers: {
+  //   setPage: (state, { payload }) => {
+  //     state.page = payload;
+  //     console.log(state.page);
+  //   },
+  // },
+
   extraReducers: builder => {
     builder
       .addCase(fetchCars.pending, state => {
+        state.isRefreshing = true;
         state.isLoading = true;
         state.isMore = false;
         state.isError = false;
@@ -23,6 +31,7 @@ export const carsSlice = createSlice({
       .addCase(fetchCars.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isError = false;
+        state.isRefreshing = false;
 
         state.cars = [...state.cars, ...payload];
         if (payload.length < 12) {
@@ -35,6 +44,7 @@ export const carsSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
         state.isMore = false;
+        state.isRefreshing = false;
       })
       .addCase(fetchCarsBySearch.pending, (state, { payload }) => {
         state.isRefreshing = true;
@@ -56,3 +66,5 @@ export const carsSlice = createSlice({
 });
 
 export const carsReducer = carsSlice.reducer;
+
+// export const { setPage } = carsSlice.actions;

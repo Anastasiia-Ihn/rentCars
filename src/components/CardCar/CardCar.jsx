@@ -12,7 +12,7 @@ import {
 } from 'components/CardCarAbout/CardCarAbout.styled';
 import { getFavorites } from 'redux/favorites/favoritesSlise';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFavCars } from 'redux/cars/carsSelectors';
+import { selectFavCars } from 'redux/favorites/favoritesSelectors';
 
 export const CardCar = ({ item }) => {
   const {

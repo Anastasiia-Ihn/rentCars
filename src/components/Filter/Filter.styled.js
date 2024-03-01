@@ -12,6 +12,7 @@ export const ButtonSearch = styled.button`
   color: #fff;
   font-weight: 600;
   line-height: 1.42857;
+  margin-right: 10px;
 
   &:hover {
     cursor: pointer;
@@ -42,14 +43,14 @@ export const FieldStyled = styled(Field)`
   background: #f7f7fb;
 
   &.scrollbar-container {
-    height: 272px;
+    max-height: 272px;
   }
 
   &::-webkit-scrollbar {
     width: 8px; /* ширина скролбару */
-    height: 12px;
+    /* height: 12px; */
     /* scrollbar-color: rgba(18, 20, 23, 0.05); */
-    scrollbar-width: thin;
+    /* scrollbar-width: thin; */
   }
 
   &::-webkit-scrollbar-track {
@@ -58,14 +59,19 @@ export const FieldStyled = styled(Field)`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(18, 20, 23, 0.05); // колір самого скролу */
-    height: 50%;
+    background: red; // колір самого скролу */
+    /* height: 50%; */
     border-radius: 10px; /* заокруглення самого скролу */
     cursor: pointer;
-    &:hover {
+    /* &:hover {
       background: #3477ff; // колір самого скролу при наведенні
-    }
+    } */
   }
+`;
+
+export const FieldStyledForPrice = styled(FieldStyled)`
+  padding-left: 50px;
+  width: 125px;
 `;
 
 export const Option = styled.option`
@@ -87,4 +93,13 @@ export const Option = styled.option`
     color: #121417;
     background-color: #fff;
   }
+`;
+
+export const Div = styled.div`
+  position: relative;
+`;
+export const Span = styled.span`
+  position: absolute;
+  top: 14px;
+  left: 14px;
 `;

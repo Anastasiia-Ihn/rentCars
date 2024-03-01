@@ -1,14 +1,13 @@
 import { CardCar } from 'components/CardCar/CardCar';
-import { useSelector } from 'react-redux';
-import { selectVisibleCars } from 'redux/cars/carsSelectors';
 import { ListAllCars } from './ListCars.styled';
+import { nanoid } from '@reduxjs/toolkit';
 
-export const ListCars = () => {
-  const visibleCars = useSelector(selectVisibleCars);
+export const ListCars = ({ visibleCars }) => {
   return (
     <ListAllCars>
       {visibleCars?.map(item => (
-        <CardCar key={item.id} item={item} />
+        // <CardCar key={item.id} item={item} />
+        <CardCar key={nanoid()} item={item} />
       ))}
     </ListAllCars>
   );

@@ -1,87 +1,76 @@
 import { Formik } from 'formik';
-import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import {
   ButtonSearch,
+  Div,
   FieldStyled,
+  FieldStyledForPrice,
   FormStyled,
   Label,
   Option,
+  Span,
 } from './Filter.styled';
 import { arrNumbers } from 'helpers/arrNumbers';
-
-const makes = [
-  'Buick',
-  'Volvo',
-  'HUMMER',
-  'Subaru',
-  'Mitsubishi',
-  'Nissan',
-  'Lincoln',
-  'GMC',
-  'Hyundai',
-  'MINI',
-  'Bentley',
-  'Mercedes-Benz',
-  'Aston Martin',
-  'Pontiac',
-  'Lamborghini',
-  'Audi',
-  'BMW',
-  'Chevrolet',
-  'Chrysler',
-  'Kia',
-  'Land',
-];
+import makes from '../../makes.json';
 
 const builderSchema = Yup.object().shape({
   make: Yup.string(),
   rentalPrice: Yup.string(),
 });
 
-export const Filter = ({ onSubmit }) => {
-  const initialValues = useSelector(state => state.filtersCars.filtersCars);
-
+export const Filter = ({ onSubmit, searchParams, handleReset }) => {
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={searchParams}
       validationSchema={builderSchema}
       onSubmit={onSubmit}
     >
-      <FormStyled>
-        <Label htmlFor="make">Car Brand </Label>
-        <FieldStyled
-          component="select"
-          aria-label="select"
-          name="make"
-          placeholder="Enter the text"
-        >
-          <Option value="">All</Option>
-          {makes.map(el => (
-            <Option value={el} key={el}>
-              {el}
-            </Option>
-          ))}
-        </FieldStyled>
+      {({ resetForm }) => (
+        <FormStyled>
+          <Label htmlFor="make">Car Brand </Label>
+          <FieldStyled
+            component="select"
+            aria-label="select"
+            name="make"
+            type="text"
+            placeholder="Enter the text"
+          >
+            <Option value="">Enter the text</Option>
 
-        <Label htmlFor="rentalPrice">Price/ 1 hour</Label>
+            {makes.map(el => (
+              <Option value={el} key={el}>
+                {el}
+              </Option>
+            ))}
+          </FieldStyled>
 
-        <FieldStyled
-          name="rentalPrice"
-          id=""
-          component="select"
-          aria-label="select"
-        >
-          <Option value="">All</Option>
-          {arrNumbers(19).map(el => (
-            <Option key={el} value={el}>
-              {el}
-            </Option>
-          ))}
-        </FieldStyled>
+          <Label htmlFor="rentalPrice">Price/ 1 hour</Label>
+          <Div>
+            <Span>To $</Span>
+            <FieldStyledForPrice
+              name="rentalPrice"
+              component="select"
+              aria-label="select"
+              type="text"
+              placeholder="Enter price"
+            >
+              {/* <Option value="" disabled> */}
+              {/* Enter price
+            </Option> */}
+              {arrNumbers(19).map(el => (
+                <Option key={el} value={el}>
+                  {el}
+                </Option>
+              ))}
+            </FieldStyledForPrice>
+          </Div>
 
-        <ButtonSearch type="submit">Search</ButtonSearch>
-      </FormStyled>
+          <ButtonSearch type="submit">Search</ButtonSearch>
+          <ButtonSearch type="reset" onClick={() => handleReset(resetForm)}>
+            Reset
+          </ButtonSearch>
+        </FormStyled>
+      )}
     </Formik>
   );
 };

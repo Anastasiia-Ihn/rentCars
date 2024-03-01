@@ -1,8 +1,9 @@
 import { FavoriteList } from 'components/FavoriteList/FavoriteList';
 import { useSelector } from 'react-redux';
+import { selectFavCars } from 'redux/favorites/favoritesSelectors';
 
 export default function Favorites() {
-  const listCars = useSelector(state => state.favoritesCars.favorites);
+  const listCars = useSelector(selectFavCars);
 
   return (
     <section>

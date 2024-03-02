@@ -30,7 +30,6 @@ export default function Catalog() {
     const filtersLength = Object.keys(rest).length;
 
     if (!page && !filtersLength) {
-      console.log(page);
       setSearchParams({ page: 1 });
       return;
     }

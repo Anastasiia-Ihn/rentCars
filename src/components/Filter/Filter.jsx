@@ -17,25 +17,34 @@ const builderSchema = Yup.object().shape({
   make: Yup.string(),
   rentalPrice: Yup.string(),
 });
+const searchValue = {
+  make: '',
+  rentalPrice: '',
+};
 
 export const Filter = ({ onSubmit, searchParams, handleReset }) => {
   return (
     <Formik
-      initialValues={searchParams}
+      enableReinitialize
+      initialValues={searchParams ? searchParams : searchValue}
       validationSchema={builderSchema}
       onSubmit={onSubmit}
     >
-      {({ resetForm }) => (
+      {({ resetForm, values }) => (
         <FormStyled>
           <Label htmlFor="make">Car Brand </Label>
           <FieldStyled
             component="select"
             aria-label="select"
             name="make"
+            value={values.make ? values.make : searchValue.make}
+            // defaultValue=""
             type="text"
             placeholder="Enter the text"
           >
-            <Option value="">Enter the text</Option>
+            <Option disabled value="">
+              Enter the text
+            </Option>
 
             {makes.map(el => (
               <Option value={el} key={el}>
@@ -51,12 +60,18 @@ export const Filter = ({ onSubmit, searchParams, handleReset }) => {
               name="rentalPrice"
               component="select"
               aria-label="select"
+              // defaultValue=""
+              value={
+                values.rentalPrice
+                  ? values.rentalPrice
+                  : searchValue.rentalPrice
+              }
               type="text"
               placeholder="Enter price"
             >
-              {/* <Option value="" disabled> */}
-              {/* Enter price
-            </Option> */}
+              <Option disabled value="">
+                Enter price
+              </Option>
               {arrNumbers(19).map(el => (
                 <Option key={el} value={el}>
                   {el}

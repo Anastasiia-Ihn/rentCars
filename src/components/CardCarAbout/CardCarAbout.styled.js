@@ -50,25 +50,13 @@ export const ListAboutCar = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 
   font-weight: 400;
   font-size: 12px;
 
   line-height: 1.5;
   color: rgba(18, 20, 23, 0.5);
-
-  &li::before {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 1px;
-    left: 0;
-
-    width: 20px;
-    height: 4px;
-    border-radius: 2px;
-  }
 `;
 export const Descrip = styled.p`
   margin-bottom: 24px;
@@ -85,7 +73,7 @@ export const H4 = styled.h4`
 export const ListAccessories = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  column-gap: 15px;
   margin-bottom: 24px;
 
   font-weight: 400;
@@ -94,6 +82,8 @@ export const ListAccessories = styled.ul`
   line-height: 1.5;
   color: rgba(18, 20, 23, 0.5);
 `;
+
+export const ItemAccessories = styled(ListAboutCar)``;
 
 export const ItemConditions = styled.li`
   padding: 7px 14px;

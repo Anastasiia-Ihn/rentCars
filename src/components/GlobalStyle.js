@@ -61,10 +61,10 @@ li{
     bottom: auto;
     transform: translate(-50%, -50%);
     padding: 0;
-    border: var(--borderModal);
     background: transparent;
-    border-radius: 8px;
     overflow: hidden;
+     border-radius: 24px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   }
   .modal-overlay {
     position: fixed;

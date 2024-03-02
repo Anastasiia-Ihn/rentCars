@@ -59,7 +59,7 @@ export const FieldStyled = styled(Field)`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: red; // колір самого скролу */
+    background: #3477ff; // колір самого скролу */
     /* height: 50%; */
     border-radius: 10px; /* заокруглення самого скролу */
     cursor: pointer;
@@ -71,7 +71,7 @@ export const FieldStyled = styled(Field)`
 
 export const FieldStyledForPrice = styled(FieldStyled)`
   padding-left: 50px;
-  width: 125px;
+  width: 150px;
 `;
 
 export const Option = styled.option`

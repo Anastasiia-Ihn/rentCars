@@ -5,6 +5,7 @@ import {
   H4,
   Href,
   Image,
+  ItemAccessories,
   ItemConditions,
   ListAboutCar,
   ListAccessories,
@@ -35,7 +36,7 @@ export const CardCarAbout = ({ item, onClose }) => {
 
   const addressArr = address.split(' ');
   const rentalConditionsArr = rentalConditions.split('\n');
-  // const mileageNew = mileage.
+
   return (
     <ModalWrapper key={id}>
       <ButtonClose type="button" onClick={onClose}>
@@ -75,29 +76,25 @@ export const CardCarAbout = ({ item, onClose }) => {
       <H4>Accessories and functionalities:</H4>
       <ListAccessories>
         {accessories.concat(functionalities).map(el => (
-          <li key={nanoid()}>
+          <ItemAccessories key={nanoid()}>
             <p>{el}</p>
-          </li>
+          </ItemAccessories>
         ))}
       </ListAccessories>
       <H4>Rental Conditions: </H4>
       <ListRules>
-        {rentalConditionsArr.map(el => {
-          // console.log(typeof el.slice(-2));
-          // if (Number(el.slice(-2))) {
-          //   <ItemConditions key={nanoid()}>
-          //     <p>
-          //       {`${el}`} <span>{el.slice(-2)}</span>,
-          //     </p>
-          //   </ItemConditions>;
-          // }
-
-          return (
-            <ItemConditions key={nanoid()}>
-              <p>{el}</p>
-            </ItemConditions>
-          );
-        })}
+        <ItemConditions>
+          <p>
+            {`Minimum age: `}
+            <span>{rentalConditionsArr[0].slice(-2)}</span>
+          </p>
+        </ItemConditions>
+        <ItemConditions>
+          <p>{rentalConditionsArr[1]}</p>
+        </ItemConditions>
+        <ItemConditions>
+          <p>{rentalConditionsArr[2]}</p>
+        </ItemConditions>
 
         <ItemConditions>
           <p>

@@ -54,26 +54,35 @@ li{
 }
 
 .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    transform: translate(-50%, -50%);
-    padding: 0;
-    background: transparent;
-    overflow: hidden;
-     border-radius: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 24px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   }
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-  }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+.body--close {
+    overflow: auto;
+}
 
 .svg-active {
   fill: #3477ff;

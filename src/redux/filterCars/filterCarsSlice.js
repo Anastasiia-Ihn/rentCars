@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const filtersCarsInitialState = {
+const initialState = {
   filtersCars: {
     make: '',
     rentalPrice: '',
@@ -9,7 +9,7 @@ const filtersCarsInitialState = {
 
 export const filtersCarsSlice = createSlice({
   name: 'filtersCars',
-  initialState: filtersCarsInitialState,
+  initialState,
   reducers: {
     setFilter: (state, { payload }) => {
       state.filtersCars = payload;

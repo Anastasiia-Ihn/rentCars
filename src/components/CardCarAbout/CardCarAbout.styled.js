@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
   position: relative;
-  width: 541px;
-  height: 752px;
-  padding: 40px;
+  width: 531px;
+  padding: 35px;
 
   border-radius: 24px;
   background-color: #fff;
@@ -106,7 +105,8 @@ export const ItemConditions = styled.li`
 export const ListRules = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  row-gap: 4px;
+  column-gap: 8px;
   margin-bottom: 24px;
 
   span {

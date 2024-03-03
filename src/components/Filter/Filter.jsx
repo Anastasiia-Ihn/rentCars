@@ -32,8 +32,9 @@ export const Filter = ({ onSubmit, searchParams, handleReset }) => {
     >
       {({ resetForm, values }) => (
         <FormStyled>
-          <Label htmlFor="make">Car Brand </Label>
+          <Label htmlFor="make">Car Brand</Label>
           <FieldStyled
+            id="make"
             component="select"
             aria-label="select"
             name="make"
@@ -57,10 +58,10 @@ export const Filter = ({ onSubmit, searchParams, handleReset }) => {
           <Div>
             <Span>To $</Span>
             <FieldStyledForPrice
+              id="rentalPrice"
               name="rentalPrice"
               component="select"
               aria-label="select"
-              // defaultValue=""
               value={
                 values.rentalPrice
                   ? values.rentalPrice

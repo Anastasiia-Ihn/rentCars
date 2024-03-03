@@ -13,6 +13,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { carsReducer } from './cars/carsSlice.js';
 import { favoritesReducer } from './favorites/favoritesSlise.js';
+import { modalReducer } from './modals/modalSlice.js';
 
 const persistConfigFavorites = {
   key: 'favorites',
@@ -22,6 +23,7 @@ const persistConfigFavorites = {
 export const store = configureStore({
   reducer: {
     cars: carsReducer,
+    modal: modalReducer,
     favoritesCars: persistReducer(persistConfigFavorites, favoritesReducer),
   },
   middleware: getDefaultMiddleware =>

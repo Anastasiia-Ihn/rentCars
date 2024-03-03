@@ -1,19 +1,17 @@
 import { useState } from 'react';
-import Modal from 'react-modal';
+import { useDispatch, useSelector } from 'react-redux';
 
 import imageDef from 'images/default-placeholder.png';
+import { getFavorites } from 'redux/favorites/favoritesSlise';
+import { selectFavCars } from 'redux/favorites/favoritesSelectors';
+import { onOpenModal } from 'redux/modals/modalSlice';
 
-import { CardCarAbout } from 'components/CardCarAbout/CardCarAbout';
 import { Icon } from 'components/Icon';
 import { Button, ContainerForTitle, Img, ItemForList } from './CardCar.styled';
 import {
   ListAboutCar,
   Title,
 } from 'components/CardCarAbout/CardCarAbout.styled';
-import { getFavorites } from 'redux/favorites/favoritesSlise';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFavCars } from 'redux/favorites/favoritesSelectors';
-
 export const CardCar = ({ item }) => {
   const {
     id,
@@ -28,7 +26,6 @@ export const CardCar = ({ item }) => {
   } = item;
 
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -38,17 +35,13 @@ export const CardCar = ({ item }) => {
 
   const [, city, country] = address.split(' ');
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   const handleClick = () => {
     setIsFavorite(!isFavorite);
     dispatch(getFavorites(item));
+  };
+
+  const onClickLearnMore = () => {
+    dispatch(onOpenModal(item));
   };
 
   return (
@@ -104,18 +97,9 @@ export const CardCar = ({ item }) => {
         </li>
       </ListAboutCar>
 
-      <Button type="button" onClick={openModal}>
+      <Button type="button" onClick={onClickLearnMore}>
         Learn more
       </Button>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="modal about a car"
-        className="modal-content"
-        overlayClassName="modal-overlay"
-      >
-        <CardCarAbout item={item} onClose={closeModal} />
-      </Modal>
     </ItemForList>
   );
 };

@@ -12,19 +12,30 @@ export const ButtonSearch = styled.button`
   color: #fff;
   font-weight: 600;
   line-height: 1.42857;
-  margin-right: 10px;
 
   &:hover {
     cursor: pointer;
     background: #0b44cd;
   }
 `;
+export const BtnWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 
 export const FormStyled = styled(Form)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
+  padding: 0 20px;
+  margin: 0 auto 50px auto;
+  gap: 20px;
+  
+  @media only screen and (min-width: 1100px) {
+    flex-direction: row;
+    padding: 0 120px;
+  }
 `;
 
 export const Label = styled.label`
@@ -32,7 +43,6 @@ export const Label = styled.label`
 `;
 
 export const FieldStyled = styled(Field)`
-  margin-right: 20px;
   width: 224px;
   height: 48px;
   padding: 14px 8px 14px 18px;
@@ -42,31 +52,32 @@ export const FieldStyled = styled(Field)`
 
   background: #f7f7fb;
 
-  &.scrollbar-container {
-    max-height: 272px;
+  &::-webkit-scrollbar-track-piece {
+    background-color: #d1cfcf;
+    width: 150px;
   }
-
   &::-webkit-scrollbar {
-    width: 8px; /* ширина скролбару */
-    /* height: 12px; */
-    /* scrollbar-color: rgba(18, 20, 23, 0.05); */
-    /* scrollbar-width: thin; */
+    background-color: #f7f7fb;
+    width: 12px;
+    overflow: auto;
+    cursor: pointer;
+    max-height: 88px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #fff; //  колір фону всієї доріжки скролбару
-    border-radius: 10px; // заокруглення доріжки скролу
+    background-color: #f7f7fb; //  колір фону всієї доріжки скролбару
+    border-radius: 20px; // заокруглення доріжки скролу
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #3477ff; // колір самого скролу */
-    /* height: 50%; */
-    border-radius: 10px; /* заокруглення самого скролу */
-    cursor: pointer;
-    /* &:hover {
-      background: #3477ff; // колір самого скролу при наведенні
-    } */
+    background-color: rgb(52, 112, 255); // колір самого скролу */
+    border-radius: 20px; /* заокруглення самого скролу */
   }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const FieldStyledForPrice = styled(FieldStyled)`

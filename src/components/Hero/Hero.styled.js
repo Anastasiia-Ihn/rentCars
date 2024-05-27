@@ -10,6 +10,7 @@ export const HeroSection = styled.section`
   background-position: center;
   background-size: cover;
   padding: 150px 0;
+  width: 100%;
 
   background-image: linear-gradient(
       rgba(46, 47, 66, 0.7),

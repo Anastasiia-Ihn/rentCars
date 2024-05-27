@@ -10,10 +10,11 @@ export const GlobalStyle = createGlobalStyle`
 body {
   font-family:var(--font-family);
   font-size: 14px;
-  width: 1440px;
+  max-width: 1920px;
   line-height: 1.42857;
   color: #121417;
-  padding: 0 128px;
+  /* padding: 0 128px; */
+  background-color: #dbdce4;
   
   margin: 0 auto;
 }

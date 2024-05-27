@@ -1,8 +1,8 @@
-import { ListNavStyled, StyledLink } from './Navigation.styled';
+import { ListNavStyled, Nav, StyledLink } from './Navigation.styled';
 
 export const Navigation = () => {
   return (
-    <nav>
+    <Nav>
       <ListNavStyled>
         <li>
           <StyledLink to="/">Home</StyledLink>
@@ -14,6 +14,6 @@ export const Navigation = () => {
           <StyledLink to="/favorite">Favorite</StyledLink>
         </li>
       </ListNavStyled>
-    </nav>
+    </Nav>
   );
 };

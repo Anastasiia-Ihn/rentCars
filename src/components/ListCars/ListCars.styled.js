@@ -6,6 +6,9 @@ export const ListAllCars = styled.ul`
   flex-wrap: wrap;
   column-gap: 29px;
   row-gap: 50px;
-  margin-bottom: 100px;
-  padding: 0 120px;
+  margin-bottom: 40px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 80px;
+  }
 `;

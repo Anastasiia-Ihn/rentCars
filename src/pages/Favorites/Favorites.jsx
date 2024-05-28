@@ -12,9 +12,9 @@ export default function Favorites() {
       {listCars.length ? (
         <FavoriteList favoritesCars={listCars} />
       ) : (
-        <h4>You didn't choose any car.</h4>
-      )}
-      <img src={img} alt="emoji" width={'100px'} />
+        <><h4>You didn't choose any car.</h4>
+       <img src={img} alt="emoji" width={'100px'} /></>)}
+     
     </Section>
   );
 }

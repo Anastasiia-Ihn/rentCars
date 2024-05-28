@@ -13,6 +13,16 @@ export const H2Styled = styled.h2`
   margin-bottom: 20px;
 `;
 export const Section = styled.section`
-  margin: 0 auto;
+  margin: 0 auto ;
   text-align: center;
+  padding: 0 20px;
+
+
+  @media only screen and (min-width: 768px) {
+    padding: 0 50px;
+  }
+
+  @media only screen and (min-width: 1100px) {
+    padding: 0 120px;
+  }
 `;
